@@ -115,7 +115,7 @@ export default function NotificationBell() {
         >
           <div className="px-4 py-3 border-b bg-card">
             <p className="font-semibold text-gray-800">Reminders</p>
-            <p className="text-xs text-gray-500">Tugas dalam 7 hari kedepan.</p>
+            <p className="text-xs text-gray-500">Tugas dalam 7 hari kedepan dan yang belum diselesaikan.</p>
           </div>
 
           <div className="max-h-80 overflow-y-auto">
