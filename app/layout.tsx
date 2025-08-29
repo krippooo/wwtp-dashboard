@@ -20,10 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`min-h-screen bg-background ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
         <div className="flex">
-          <div className="hidden md:block h-[200px] flex-col pl-5">
+          <div className="hidden xl:block h-[200px] flex-col pl-5">
             <Sidebar />
           </div>
-          <div className="p-2 w-full md:max-w-[1280px]">
+          <div className="p-2 w-full xl:max-w-[1280px]">
             {/* Provider global, semua anak share data */}
             <DataProvider>
               {/* Minibar global: otomatis hidden di '/' */}
