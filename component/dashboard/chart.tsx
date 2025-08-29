@@ -37,6 +37,11 @@ const COLORS: Record<Source, Record<string, string>> = {
   t500: { cod: '#2c6e49', tss: '#F17105', pH: '#6610F2', temperature: '#DD0426' },
 };
 
+function keyFromLabel(label: string): keyof typeof UNIT | undefined {
+  const entry = SERIES.find(s => s.label === label);
+  return entry?.key;
+}
+
 export default function AnalyticsChart() {
   const [rows, setRows] = useState<Point[]>([]);
 
@@ -133,8 +138,9 @@ export default function AnalyticsChart() {
                   <Tooltip
                     labelFormatter={(v) => safeFormatTime(v)}
                     formatter={(value: any, name: string) => {
-                      const unit = UNIT[name] ?? '';
-                      return [`${value ?? '-'} ${unit}`, labelFor(name)];
+                    const key = keyFromLabel(name) ?? '';
+                    const unit = UNIT[key] ?? '';
+                    return [`${value ?? '-'} ${unit}`, name];
                     }}
                   />
                   <Legend wrapperStyle={{ fontSize: 12 }} />
