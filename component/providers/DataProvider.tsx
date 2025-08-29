@@ -1,3 +1,4 @@
+//dataprovider.tsx
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
@@ -23,22 +24,29 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [t500Now, setT500Now] = useState<Row>(null);
   const [t500Past24h, setT500Past24h] = useState<Row>(null);
 
-  const load = async () => {
-    const ts = Date.now();
-    const [p700, p500] = await Promise.all([
-      fetch(`/api/last_data?table=t700&agoHours=24&_=${ts}`, { cache: 'no-store' }).then(r=>r.json()),
-      fetch(`/api/last_data?table=t500&agoHours=24&_=${ts}`, { cache: 'no-store' }).then(r=>r.json()),
-    ]);
-    // ekspektasi: { current, past }
-    setT700Now(p700?.current ?? null);
-    setT700Past24h(p700?.past ?? null);
-    setT500Now(p500?.current ?? null);
-    setT500Past24h(p500?.past ?? null);
+const load = async () => {
+  const ts = Date.now();
+  const [p700, p500] = await Promise.all([
+    fetch(`/api/last_data?table=t700&agoHours=24&_=${ts}`, { cache: 'no-store' }).then(r => r.json()),
+    fetch(`/api/last_data?table=t500&agoHours=24&_=${ts}`, { cache: 'no-store' }).then(r => r.json()),
+  ]);
+
+  const numify = (obj: Record<string, any>) => {
+    if (!obj) return {};
+    return Object.fromEntries(
+      Object.entries(obj).map(([k, v]) => [k, v == null ? null : Number(v)])
+    );
   };
+
+  setT700Now(numify(p700?.current));
+  setT700Past24h(numify(p700?.past ?? {}));
+  setT500Now(numify(p500?.current));
+  setT500Past24h(numify(p500?.past ?? {}));
+};
 
   useEffect(() => {
     load();
-    const id = setInterval(load, 120_000); // 2 menit
+    const id = setInterval(load, 60_000); // 2 menit
     const onVis = () => { if (document.visibilityState === 'visible') load(); };
     document.addEventListener('visibilitychange', onVis);
     return () => { clearInterval(id); document.removeEventListener('visibilitychange', onVis); };
