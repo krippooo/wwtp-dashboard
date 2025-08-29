@@ -10,7 +10,7 @@ type MetricItem = {
 };
 
 function fmt(v?: number | null) {
-  return v == null ? '—' : Number.isFinite(v) ? +(+v).toFixed(2) : '—';
+  return v == null ? '—' : Number.isFinite(v) ? (+v).toFixed(2) : '—';
 }
 
 function pctChange(now?: number | null, past?: number | null) {
