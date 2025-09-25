@@ -9,7 +9,6 @@ export default function DokumenCard() {
   const dokumen: Doc[] = [
     { label: "SOP Maintenance Monitoring Kualitas Air", url: "https://drive.google.com/file/d/1X_Z_wAcrKo7kdV0X46jawy3kWiOH3Vkt/view?usp=sharing" },
     { label: "User Manual Web Dashboard (Bahasa ver.)", url: "https://drive.google.com/file/d/1GlbSD9Ini6_t6tLt3ez0YA14zSS7RoTV/view?usp=sharing" },
-    { label: "User Manual Web Dashboard (English ver.)", url: "https://drive.google.com/file/d/1gcoYRfe-i_ZF3-4Rsu9zWrscflc4BZP7/view?usp=sharing" },   
     { label: "Manual book sensor COD", url: "https://drive.google.com/file/d/1sJ1PTFSaeyg9CyebEQajo_-VJQgwPKRS/view" },
     { label: "Manual book sensor TSS", url: "https://drive.google.com/file/d/1sCQJA7hS5pZjEn2YM7IzS45TmXv0FOzK/view" },
     { label: "Manual book sensor pH", url: "https://drive.google.com/file/d/1sESdGwTeL-EuvxV-NuUJEgmoODmVLgQ8/view" },
